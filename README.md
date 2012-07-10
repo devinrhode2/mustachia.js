@@ -1,4 +1,4 @@
-# mustachia.js - Logic-less {{mustache}} templates _with some live updating spice._
+## mustachia.js - Logic-less {{mustache}} templates with some live updating spice.
 
 mustachia.js is a fork of [mustache.js](http://github.com/janl/mustache.js) that sets up your logic-less mustache templates with a hook and client side file to update your templates data in real-time with [socket.io](http://socket.io/)
 
