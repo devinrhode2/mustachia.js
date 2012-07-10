@@ -1,9 +1,13 @@
-# mustache.js - Logic-less {{mustache}} templates with JavaScript
+# mustachia.js - Logic-less {{mustache}} templates with some live updating spice.
 
-> What could be more logical awesome than no logic at all?
+mustachia.js is a fork of [mustache.js](http://github.com/janl/mustache.js) that sets up your logic-less mustache templates with a hook and client side file to update your templates data in real-time with [socket.io](http://socket.io/)
 
-[mustache.js](http://github.com/janl/mustache.js) is an implementation of the
-[Mustache](http://mustache.github.com/) template system in JavaScript.
+I heard all the craze about backbone and knockout, and after viewing their homepage, I realized there are many many pages to documentation to learn.
+
+Then I got a simple idea: use the same identifier for mustache templates as a <span> id, push new JSON to the client with [socket.io](http://socket.io) and wha-la, it's magic!
+
+Here's the rest of the mustache.js readme
+---------------
 
 [Mustache](http://mustache.github.com/) is a logic-less template syntax. It can
 be used for HTML, config files, source code - anything. It works by expanding
