@@ -6,6 +6,10 @@ I heard all the craze about backbone and knockout, and after viewing their homep
 
 Then I got a simple idea: use the same identifier for mustache templates as a <span> id, push new JSON to the client with [socket.io](http://socket.io) and wha-la, it's magic!
 
+### But wait! 
+
+I found something that includes my functionality plus way more awesome stuff. It's call [MeteorJS](http://meteorjs.com) and you've _got to check it out!_
+
 Here's the rest of the mustache.js readme
 ---------------
 
