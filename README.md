@@ -134,9 +134,17 @@ Here's the gist:
     class: answers.1.comments //answer two comments
     class: answers.2.comments.content //....?
 
-Aha! This idea is flawed. How do we update a given comments content? 
+How do we update a given comments content?
 
-So, goes to the idea of embedding all array index into the id attribute, so long classes!
+    answers.2.comments.content[0] //content of comment 1
+
+This immediately becomes more and more weird the further away your last array index is from the bottom of the JSON...
+
+Consider this:
+
+    answers.2.comments.author.lastname[1] //who's lastname? the 2nd commens author's lastname. On the 3rd answer of course.
+
+The idea to embed all array indices works in theory, but in practice can get strange as you see.
 
 
 Here's the rest of the mustache.js readme
