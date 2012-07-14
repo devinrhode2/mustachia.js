@@ -10,6 +10,135 @@ Then I got a simple idea: use the same identifier for mustache templates as a <s
 
 I found something that includes my functionality plus way more awesome stuff. It's call [MeteorJS](http://meteorjs.com) and you've _got to check it out!_
 
+I started a tad on this, you can grab whatever at node_modules/mustachia.js that interests you.
+
+_If you really end up digging in_, below I'm going to document the json value identification system below. Basically, for any given mustache json, we need to generate a unique `id` or `class` so we can then do `getElementById` or `getElementsByClassName` to update that data.
+
+<h2><em>Here, take a journey with me</em></h2>
+
+`getElementByClassName` can handle one array index. It doesn't make sense to accept two indices. But what if you have purely array based JSON like below?
+
+    {
+      [
+        ['a', 'adf'],
+        ['b', 'adf'],
+        ['c', 'adf'],
+        ['d', 'adf'],
+      ]
+    }
+
+...how do you identify some given array? Hold that thought, does it work for this JSON?
+
+    {
+      [
+        ['a', 'adf'],
+        ['b', 'adf'],
+        ['c', 'adf'],
+        [
+          ['a', 'adf'],
+          ['b', 'adf'],
+          ['c', 'adf'],
+        ],
+      ]
+    }
+
+If such magic as mustachia.js is going to be applied, it needs to accept ALL and ANY JSON structure. I think. Perhaps mustache can't handle any json structure, perhaps this doesn't either. But it can, it's not impossible. The goal is transparent life html, not a beautiful API. Namely, the span id's and class's don't need exactly need to be pretty.
+
+The way to accept any JSON is to translate the array indices into the class and id attributes. 
+
+Then everything is unique and there are no need for classes. Perhaps this works for you.
+
+Perhaps you're more like me, and itch to be more elegant. Well, `getElementsByClassName` can accept one of those array indices. So, you can effectively drop off the last array index. 
+
+You probably want to push all this JSON path data onto an array, so you don't get throw by someone starting an json key with a number and a dot. 
+
+An simple example of all this mumbo jumbo:
+
+    {
+      devin: {
+        isDeveloper: true,
+        languages: [
+          'php', 'html', 'css', 'judge me, the only other essential language is:', 'javascript'
+        ]
+      }
+    }
+
+These data items would have the following identifiers generated for them:
+
+    id: devin.isDeveloper
+    class: devin.langauges
+
+To get any given language, the array index is handled by getElementsByClassName.
+
+A full advanced example, based on StackOverflow:
+
+    {
+      question: {
+       author: 'devinrhode2',
+       content: 'der how does all dat shiz get identified?!!?!'
+      },
+      answers: [
+        {
+          author: '',
+          content: '',
+          time: '',
+          comments: [
+            { ... },
+            { ... },
+            { ... },
+          ]
+        },
+        {
+          author: '',
+          content: '',
+          time: '',
+          comments: [
+            { ... },
+            { ... },
+            { ... },
+          ]
+        },
+        {
+          author: '',
+          content: '',
+          time: '',
+          comments: [
+            { content: 'you stupid brain!' },
+            { ... },
+            { ... },
+          ]
+        }
+      ]
+    }
+    
+I'm going to go straight to the meat of the problem, the answers and questions:
+
+..But for completeness, let's say we have this template:
+
+    <body>
+      <div id="question"></div>
+      {{#answers}}
+        <div class="answer">
+          <p>{{author}} .. {{content}}</p>
+          {{#comments}}
+            <p>{{content}}</p>
+          {{/comments}}
+        </div>
+      {{/answers}}
+    </body>
+    
+Each array index needs to be embedded into the identifier. Classes can handle one index, so we drop the last one. 
+Here's the gist:
+
+    class: answers.0.comments //answer one comments
+    class: answers.1.comments //answer two comments
+    class: answers.2.comments.content //....?
+
+Aha! This idea is flawed. How do we update a given comments content? 
+
+So, goes to the idea of embedding all array index into the id attribute, so long classes!
+
+
 Here's the rest of the mustache.js readme
 ---------------
 
