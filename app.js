@@ -1,3 +1,5 @@
+//run this with `node app.js` it's not a full web app, just spits out rendered html templating.
+
 var Hogan = require('hogan.js');
 var Mustache = require('mustachia.js');
 var colors = require('colors');
