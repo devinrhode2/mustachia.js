@@ -36,34 +36,6 @@ function receiveUpdate(update, prefix) {
   }
 }
 
-
-/* There is a limitation when you consider JSON with a pure array structure. The only way to identify data items is to track all the indices to get to any given data item. That means for this JSON:
-
-{
-  answers: [
-    '
-  ]
-}
-
-This means each item would have to get an id,
-
-because we want to avoid giving everything it's own unique id, 
-
-{
-  one: {
-    moar: {
-      objectz: {
-        iAmAUniqueKey: 'my unique id is: one.moar.objectz.iAmAUniqueKey'
-      }
-    }
-  },
-  two: 
-}
-
-And also JSON that for any given value, only has one array between it and the root. This is because of the manner that getElementsByClassName takes one index, and scoping gets messy and innaccurate. 
-
-*/
-
 (function (exports) {
   
   function generateFullName(context) {
