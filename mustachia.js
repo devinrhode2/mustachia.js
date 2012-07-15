@@ -5,6 +5,12 @@
 
 var Mustache = (typeof module !== "undefined" && module.exports) || {};
 
+function firstKey(obj) {
+  for (var key in obj) {
+    return key;
+  }
+}
+
 function receiveUpdate(update, prefix) {
   if (typeof prefix === 'undefined') {
     prefix = [];
@@ -59,12 +65,6 @@ And also JSON that for any given value, only has one array between it and the ro
 */
 
 (function (exports) {
-
-  function firstKey(obj) {
-    for (var key in obj) {
-      return key;
-    }
-  }
   
   function generateFullName(context) {
     if (typeof context._cache !== 'undefined') {

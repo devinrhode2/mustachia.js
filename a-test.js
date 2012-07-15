@@ -1,8 +1,19 @@
 //run this with `node app.js` it's not a full web app, just spits out rendered html templating.
 
 var Hogan = require('hogan.js');
-var Mustache = require('mustachia.js');
-var colors = require('colors');
+
+function dump(obj) {
+  for (var i in obj) {
+    console.log(i + ' ' + obj[i]);
+  }
+}
+
+String.prototype.contains = function StringPrototypeContains(substring) {
+  return this.indexOf(substring) > -1;
+};
+
+var Mustache = require('./mustachia.js');
+require('colors');
 console.log('Starting'.magenta + '\n---');
 var render = function render(name, template, data, expected) {
   //Hogan:
