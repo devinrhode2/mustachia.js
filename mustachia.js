@@ -1,7 +1,8 @@
 /*!
- * mustache.js - Logic-less {{mustache}} templates with JavaScript
+ * mustachia.js - Logic-less {{mustache}} templates with live updating spice.
  * http://github.com/janl/mustache.js
  */
+console.log('mustachia.js');
 
 var Mustache = (typeof module !== "undefined" && module.exports) || {};
 
