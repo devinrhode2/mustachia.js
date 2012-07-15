@@ -1,25 +1,10 @@
-//run this with `node app.js` it's not a full web app, just spits out rendered html templating.
-
-var Hogan = require('hogan.js');
-
-function dump(obj) {
-  for (var i in obj) {
-    console.log(i + ' ' + obj[i]);
-  }
-}
-
 String.prototype.contains = function StringPrototypeContains(substring) {
   return this.indexOf(substring) > -1;
 };
-
 var Mustache = require('./mustachia.js');
 require('colors');
 console.log('Starting'.magenta + '\n---');
 var render = function render(name, template, data, expected) {
-  //Hogan:
-  //var result = Hogan.compile(template).render(data);
-  
-  //Official Mustache:
   var result = Mustache.render(template, data);
   
   var testing = false;
@@ -37,6 +22,7 @@ var render = function render(name, template, data, expected) {
   } else {
     console.log(result + '\n---');
   }
+  console.log(data);
 };
 
 
@@ -90,15 +76,3 @@ No repos :(\
 
 //comment
 render('comments', '{{! ignore me }}', {}, '');
-
-//partials
-/*
-render('partials', '<h2>Names</h2>{{#names}}\
-<strong>{{name}}</strong>\
-{{/names}}', {
-  names: [
-    {name: 'Devin'},
-    {name: 'Suzie'}
-  ]
-}, '<h2>Names</h2><strong>Devin</strong><strong>Suzie</strong>');
-*/
