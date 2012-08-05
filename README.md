@@ -10,15 +10,15 @@ I realized this doesn't have a to be, and having them auto-update is *extremely 
 
 So, we have this mustache:
 
-<p>Hello, {{username}}</p>
+    <p>Hello, {{username}}</p>
 
 Instead of just outputting:
 
-<p>Hello, Bob</p>
+    <p>Hello, Bob</p>
 
 We could do:
 
-<p>Hello, <span> id="username">Bob</span></p>
+    <p>Hello, <span> id="username">Bob</span></p>
 
 Got new data for the view? Don't refresh the page, we just need the new JSON for the view: */
 
