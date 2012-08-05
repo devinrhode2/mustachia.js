@@ -4,13 +4,34 @@ mustachia.js is a fork of [mustache.js](http://github.com/janl/mustache.js) that
 
 I heard all the craze about backbone and knockout, and after viewing their homepage, I realized there are many many pages to documentation to learn.
 
-Then I got a simple idea: use the same identifier for mustache templates as a <span> id, push new JSON to the client with [socket.io](http://socket.io) and wha-la, it's magic!
+Mustache templates are a one-time operation to load the data into the page.
 
-### But wait! 
+I realized this doesn't have a to be, and having them auto-update is *extremely trivial*
 
-I found something that includes my functionality plus way more awesome stuff. It's call [MeteorJS](http://meteorjs.com) and you've _got to check it out!_
+So, we have this mustache:
 
-I started a tad on this, you can grab whatever at node_modules/mustachia.js that interests you.
+<p>Hello, {{username}}</p>
+
+Instead of just outputting:
+
+<p>Hello, Bob</p>
+
+We could do:
+
+<p>Hello, <span> id="username">Bob</span></p>
+
+Got new data for the view? Don't refresh the page, we just need the new JSON for the view: */
+
+    function receiveUpdate(update){ //update is the new JSON for the view.
+      for (var key in update) { //for each data item that needs to be updated.
+        document.getElementById(key).innerHTML = update[key]; //get that data item by id, and update it!
+      }
+    });
+
+We don't have to reload the page to refill the template with the updated data. All we have to do is get the updated data.
+Based on the mustache protocal, we know what dom elements need the new data.
+
+..but the implementation isn't quite as simple... (but it's still amazingly simple)
 
 _If you really end up digging in_, below I'm going to document the json value identification system below. Basically, for any given mustache json, we need to generate a unique `id` or `class` so we can then do `getElementById` or `getElementsByClassName` to update that data.
 
