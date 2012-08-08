@@ -6,7 +6,7 @@ I heard all the craze about backbone and knockout, and after viewing their homep
 
 Mustache templates are a one-time operation to load the data into the page.
 
-I realized this doesn't have a to be, and having them auto-update is *extremely trivial*
+I realized this doesn't have to be, and having them auto-update is *extremely trivial*
 
 So, we have this mustache:
 
